@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ahmed Nabwy</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ff-serif: 'Cormorant Garamond', Georgia, serif;
+      --ff-sans: 'Jost', sans-serif;
+      --max-w: 1120px;
+      --nav-h: 68px;
+      --bg: #111111;
+      --ink: #f0eeea;
+      --ink-mid: #c8c4bc;
+      --ink-light: #888480;
+      --rule: #2e2e2e;
+      --accent: #c8c4bc;
+      --nav-bg: #000000;
+      --nav-text: #ffffff;
+      --nav-hover: #aaaaaa;
+      --nav-border: #222222;
+      --footer-bg: #1c1c1c;
+      --footer-text: rgba(255,255,255,.35);
+      --footer-logo: rgba(255,255,255,.55);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--ff-sans);
+      color: var(--ink);
+      background: var(--bg);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      background-color: var(--nav-bg);
+      border-bottom: 1px solid var(--nav-border);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--ff-serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: .03em;
+      color: var(--nav-text);
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: .25rem;
+      list-style: none;
+    }
+
+    .nav-menu > li > a {
+      display: flex;
+      align-items: center;
+      padding: .45rem .75rem;
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--nav-text);
+      transition: color .2s;
+      white-space: nowrap;
+    }
+
+    .nav-menu > li > a:hover { color: var(--nav-hover); }
+
+    main { padding-top: var(--nav-h); }
+
+    section {
+      padding: 5rem 2rem;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 4rem;
+      align-items: start;
+      padding-top: 1rem;
+    }
+
+    .hero-bio {
+      font-family: var(--ff-serif);
+      font-size: 1.18rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--ink-mid);
+      max-width: 700px;
+    }
+
+    .hero-photo-wrap { position: relative; }
+
+    .hero-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 2px;
+      overflow: hidden;
+      background: #1a1a1a;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-caption {
+      margin-top: .75rem;
+      font-size: .75rem;
+      font-style: italic;
+      color: var(--ink-light);
+      letter-spacing: .04em;
+    }
+
+    .hero-photo-wrap::before {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: -12px;
+      right: 12px;
+      bottom: -12px;
+      border: 1px solid #333;
+      border-radius: 2px;
+      z-index: -1;
+    }
+
+    .section-divider {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      border: none;
+      border-top: 1px solid var(--rule);
+    }
+
+    .section-label {
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: .75rem;
+    }
+
+    .highlights-list { display: grid; gap: 0; }
+
+    .highlight-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .highlight-item:last-child { border-bottom: none; }
+
+    .highlight-thumb {
+      width: 100px;
+      height: 70px;
+      border-radius: 2px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #222 0%, #1a1a1a 100%);
+      border: 1px solid var(--rule);
+      color: #555;
+      font-family: var(--ff-serif);
+      font-style: italic;
+      font-size: .7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: .5rem;
+    }
+
+    .highlight-item h4 {
+      font-family: var(--ff-serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      line-height: 1.35;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    footer {
+      background-color: var(--footer-bg);
+      color: var(--footer-text);
+      text-align: center;
+      padding: 2.5rem 2rem;
+    }
+
+    .footer-logo {
+      font-family: var(--ff-serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--footer-logo);
+      letter-spacing: .04em;
+      margin-bottom: .75rem;
+    }
+
+    footer p {
+      font-size: .78rem;
+      letter-spacing: .04em;
+    }
+
+    @media (max-width: 900px) {
+      .nav-inner { flex-direction: column; height: auto; padding: 1rem 2rem; gap: .8rem; }
+      nav { position: static; height: auto; }
+      main { padding-top: 0; }
+      .nav-menu { flex-wrap: wrap; justify-content: center; }
+    }
+
+    @media (max-width: 700px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-photo-wrap { max-width: 280px; }
+      .highlight-item { grid-template-columns: 1fr; }
+      .highlight-thumb { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Ahmed Nabwy</a>
+
+    <ul class="nav-menu">
+      <li><a href="index.html" target="_blank">Home</a></li>
+      <li><a href="about.html" target="_blank">About</a></li>
+      <li><a href="research.html" target="_blank">Research</a></li>
+      <li><a href="teaching.html" target="_blank">Teaching</a></li>
+      <li><a href="media.html" target="_blank">Media</a></li>
+      <li><a href="engagement.html" target="_blank">Public Engagement</a></li>
+      <li><a href="contact.html" target="_blank">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <section id="home">
+    <div class="hero-grid">
+      <div>
+        <p class="hero-bio">
+          Ahmed Nabwy is a researcher and writer focusing on state theory, political geography, and the structural power dynamics of the Middle East. He is a doctoral candidate holding degrees from Cairo University and Hitit University, and an analytical writer for platforms including Al Jazeera's Midan, and Jadaliyya.
+        </p>
+      </div>
+
+      <div class="hero-photo-wrap">
+        <div class="hero-photo">
+          <img src="profile.jpg" alt="Ahmed Nabwy">
+        </div>
+        <p class="photo-caption">Ahmed Nabwy</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <section id="highlights">
+    <p class="section-label">Highlights</p>
+
+    <div class="highlights-list">
+      <div class="highlight-item">
+        <div class="highlight-thumb">The Deferred State</div>
+        <h4>The Deferred Modern State: An Analysis of the Failure of the Modern Arab State Project</h4>
+      </div>
+
+      <div class="highlight-item">
+        <div class="highlight-thumb">Power & Space</div>
+        <h4>Power, Space, and Representation: Everyday Politics and Urban Resistance in Cairo</h4>
+      </div>
+
+      <div class="highlight-item">
+        <div class="highlight-thumb">Architecture of Hegemony</div>
+        <h4>Israel as an Advanced Colonial Outpost: The Architecture of Hegemony in the Middle East</h4>
+      </div>
+
+      <div class="highlight-item">
+        <div class="highlight-thumb">Public Talks</div>
+        <h4>Selected talks and public interventions on Arab politics, Palestine, and regional order</h4>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-logo">Ahmed Nabwy</div>
+  <p>Researcher · Writer</p>
+</footer>
+
+</body>
+</html>
