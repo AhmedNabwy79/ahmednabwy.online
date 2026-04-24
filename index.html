@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Ahmed Nabwy</title>
+  <meta name="description" content="Ahmed Nabwy is a researcher and writer focusing on state theory, political geography, and the structural power dynamics of the Middle East.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,16 +19,19 @@
       --ff-sans: 'Jost', sans-serif;
       --max-w: 1120px;
       --nav-h: 68px;
+
       --bg: #111111;
       --ink: #f0eeea;
       --ink-mid: #c8c4bc;
       --ink-light: #888480;
       --rule: #2e2e2e;
       --accent: #c8c4bc;
+
       --nav-bg: #000000;
       --nav-text: #ffffff;
       --nav-hover: #aaaaaa;
       --nav-border: #222222;
+
       --footer-bg: #1c1c1c;
       --footer-text: rgba(255,255,255,.35);
       --footer-logo: rgba(255,255,255,.55);
@@ -43,7 +48,10 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     nav {
       position: fixed;
@@ -96,9 +104,13 @@
       white-space: nowrap;
     }
 
-    .nav-menu > li > a:hover { color: var(--nav-hover); }
+    .nav-menu > li > a:hover {
+      color: var(--nav-hover);
+    }
 
-    main { padding-top: var(--nav-h); }
+    main {
+      padding-top: var(--nav-h);
+    }
 
     section {
       padding: 5rem 2rem;
@@ -106,12 +118,43 @@
       margin: 0 auto;
     }
 
+    .hero {
+      padding-top: 6rem;
+      padding-bottom: 4rem;
+    }
+
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr 340px;
       gap: 4rem;
       align-items: start;
-      padding-top: 1rem;
+    }
+
+    .hero-label {
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title-main {
+      font-family: var(--ff-serif);
+      font-size: clamp(3rem, 7vw, 5.2rem);
+      font-weight: 300;
+      line-height: .95;
+      color: var(--ink);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-subtitle {
+      font-family: var(--ff-serif);
+      font-size: 1.35rem;
+      font-weight: 300;
+      color: var(--ink-mid);
+      margin-bottom: 1.8rem;
+      max-width: 720px;
     }
 
     .hero-bio {
@@ -123,7 +166,32 @@
       max-width: 700px;
     }
 
-    .hero-photo-wrap { position: relative; }
+    .hero-actions {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2.2rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-actions a {
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--rule);
+      transition: color .2s ease, border-color .2s ease;
+    }
+
+    .hero-actions a:hover {
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+
+    .hero-photo-wrap {
+      position: relative;
+    }
 
     .hero-photo {
       width: 100%;
@@ -176,30 +244,51 @@
       margin-bottom: .75rem;
     }
 
-    .highlights-list { display: grid; gap: 0; }
-
-    .highlight-item {
-      display: grid;
-      grid-template-columns: 100px 1fr;
-      gap: 1.5rem;
-      align-items: center;
-      padding: 1.2rem 0;
-      border-bottom: 1px solid var(--rule);
+    .current-work {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
     }
 
-    .highlight-item:last-child { border-bottom: none; }
+    .highlights {
+      padding-top: 4rem;
+    }
+
+    .highlights-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .highlight-item {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.5rem;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      background: #1a1a1a;
+      color: inherit;
+      text-decoration: none;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      min-height: 220px;
+    }
+
+    .highlight-item:hover {
+      transform: translateY(-3px);
+      border-color: #555;
+    }
 
     .highlight-thumb {
-      width: 100px;
-      height: 70px;
+      width: 100%;
+      height: 140px;
       border-radius: 2px;
       overflow: hidden;
       background: linear-gradient(135deg, #222 0%, #1a1a1a 100%);
       border: 1px solid var(--rule);
-      color: #555;
+      color: #666;
       font-family: var(--ff-serif);
       font-style: italic;
-      font-size: .7rem;
+      font-size: .85rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -209,11 +298,41 @@
 
     .highlight-item h4 {
       font-family: var(--ff-serif);
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       font-weight: 400;
-      line-height: 1.35;
+      line-height: 1.3;
       color: var(--ink);
       margin: 0;
+    }
+
+    .highlight-item p {
+      font-size: .9rem;
+      color: var(--ink-light);
+      line-height: 1.55;
+    }
+
+    .highlight-cta {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+
+    .contact-btn {
+      font-family: var(--ff-serif);
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      text-decoration: none;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--rule);
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .contact-btn:hover {
+      border-color: var(--ink);
+      color: var(--ink-mid);
     }
 
     footer {
@@ -238,17 +357,56 @@
     }
 
     @media (max-width: 900px) {
-      .nav-inner { flex-direction: column; height: auto; padding: 1rem 2rem; gap: .8rem; }
-      nav { position: static; height: auto; }
-      main { padding-top: 0; }
-      .nav-menu { flex-wrap: wrap; justify-content: center; }
+      nav {
+        position: static;
+        height: auto;
+      }
+
+      main {
+        padding-top: 0;
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        gap: .8rem;
+        padding: 1rem 2rem;
+      }
+
+      .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-photo-wrap {
+        max-width: 300px;
+      }
+
+      .highlights-list {
+        grid-template-columns: 1fr;
+      }
     }
 
-    @media (max-width: 700px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-photo-wrap { max-width: 280px; }
-      .highlight-item { grid-template-columns: 1fr; }
-      .highlight-thumb { display: none; }
+    @media (max-width: 600px) {
+      section {
+        padding: 4rem 1.2rem;
+      }
+
+      .nav-menu > li > a {
+        font-size: .72rem;
+        padding: .35rem .45rem;
+      }
+
+      .hero-title-main {
+        font-size: 3rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.15rem;
+      }
     }
   </style>
 </head>
@@ -260,24 +418,40 @@
     <a href="index.html" class="nav-logo">Ahmed Nabwy</a>
 
     <ul class="nav-menu">
-      <li><a href="index.html" target="_blank">Home</a></li>
-      <li><a href="about.html" target="_blank">About</a></li>
-      <li><a href="research.html" target="_blank">Research</a></li>
-      <li><a href="teaching.html" target="_blank">Teaching</a></li>
-      <li><a href="media.html" target="_blank">Media</a></li>
-      <li><a href="engagement.html" target="_blank">Public Engagement</a></li>
-      <li><a href="contact.html" target="_blank">Contact</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="media.html">Media</a></li>
+      <li><a href="engagement.html">Public Engagement</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
   </div>
 </nav>
 
 <main>
-  <section id="home">
+
+  <section class="hero">
     <div class="hero-grid">
       <div>
-        <p class="hero-bio">
-          Ahmed Nabwy is a researcher and writer focusing on state theory, political geography, and the structural power dynamics of the Middle East. He is a doctoral candidate holding degrees from Cairo University and Hitit University, and an analytical writer for platforms including Al Jazeera's Midan, and Jadaliyya.
+        <p class="hero-label">Political Science · Political Geography · Middle East Studies</p>
+
+        <h1 class="hero-title-main">Ahmed Nabwy</h1>
+
+        <p class="hero-subtitle">
+          Researcher and writer on state theory, political geography, and the structural power dynamics of the Middle East.
         </p>
+
+        <p class="hero-bio">
+          Ahmed Nabwy is a researcher and writer focusing on state theory, political geography, and the structural power dynamics of the Middle East. He is a doctoral candidate holding degrees from Cairo University and Hitit University, and an analytical writer for platforms including Al Jazeera's Midan and Jadaliyya.
+        </p>
+
+        <div class="hero-actions">
+          <a href="research.html">Research</a>
+          <a href="media.html">Media</a>
+          <a href="engagement.html">Public Engagement</a>
+          <a href="contact.html">Contact</a>
+        </div>
       </div>
 
       <div class="hero-photo-wrap">
@@ -291,31 +465,60 @@
 
   <hr class="section-divider" />
 
-  <section id="highlights">
+  <section class="current-work">
+    <p class="section-label">Current Work</p>
+
+    <p class="hero-bio">
+      I am currently developing a doctoral project on power, space, and representation in Cairo, while writing on state formation, authoritarianism, and regional order in the Middle East.
+    </p>
+  </section>
+
+  <hr class="section-divider" />
+
+  <section class="highlights">
     <p class="section-label">Highlights</p>
 
     <div class="highlights-list">
-      <div class="highlight-item">
-        <div class="highlight-thumb">The Deferred State</div>
-        <h4>The Deferred Modern State: An Analysis of the Failure of the Modern Arab State Project</h4>
+
+      <a href="research.html" class="highlight-item">
+        <div class="highlight-thumb">Research</div>
+        <h4>The Deferred Modern State</h4>
+        <p>
+          Research on sovereignty, legitimacy, and the unfinished modern state project in the Arab world.
+        </p>
+      </a>
+
+      <a href="research.html" class="highlight-item">
+        <div class="highlight-thumb">Cairo</div>
+        <h4>Power, Space, and Representation</h4>
+        <p>
+          Doctoral research on everyday politics, urban resistance, and the political production of space in Cairo.
+        </p>
+      </a>
+
+      <a href="media.html" class="highlight-item">
+        <div class="highlight-thumb">Writing</div>
+        <h4>Public Scholarship</h4>
+        <p>
+          Long-form essays and analysis on Palestine, authoritarianism, Iran, Turkey, and regional power structures.
+        </p>
+      </a>
+
+      <a href="engagement.html" class="highlight-item">
+        <div class="highlight-thumb">Talks</div>
+        <h4>Public Engagement</h4>
+        <p>
+          Recorded talks and media interventions on Middle Eastern politics, regional order, and political theory.
+        </p>
+      </a>
+
+      <div class="highlight-cta">
+        <a href="contact.html" class="contact-btn">Contact</a>
       </div>
 
-      <div class="highlight-item">
-        <div class="highlight-thumb">Power & Space</div>
-        <h4>Power, Space, and Representation: Everyday Politics and Urban Resistance in Cairo</h4>
-      </div>
-
-      <div class="highlight-item">
-        <div class="highlight-thumb">Architecture of Hegemony</div>
-        <h4>Israel as an Advanced Colonial Outpost: The Architecture of Hegemony in the Middle East</h4>
-      </div>
-
-      <div class="highlight-item">
-        <div class="highlight-thumb">Public Talks</div>
-        <h4>Selected talks and public interventions on Arab politics, Palestine, and regional order</h4>
-      </div>
     </div>
   </section>
+
 </main>
 
 <footer>
