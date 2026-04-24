@@ -78,10 +78,87 @@
 
     .nav-logo {
       font-family: var(--ff-serif);
-      font-size: 1.25rem;
-      font-weight: 600;
-      letter-spacing: .03em;
+      font-size: 1.6rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
       color: var(--nav-text);
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .nav-logo .first {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-logo .last {
+      font-size: 0.9rem;
+      letter-spacing: 0.4em;
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+
+    .nav-logo::after {
+      content: '';
+      width: 80px;
+      height: 1px;
+      background: var(--nav-text);
+      margin-top: 6px;
+      opacity: 0.6;
+    }
+
+    .nav-logo::before {
+      content: '';
+      position: absolute;
+      left: -10%;
+      right: -20%;
+      bottom: -10px;
+      height: 2px;
+      background: var(--nav-text);
+      opacity: 0.7;
+      transform: skewX(-12deg);
+      z-index: -1;
+    }
+
+    .nav-logo::after {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: -30%;
+      width: 160%;
+      height: 1px;
+      background: var(--nav-text);
+      opacity: 0.25;
+      transform: rotate(6deg);
+      z-index: -1;
+    }
+
+    .nav-logo .first {
+      font-variant: small-caps;
+      letter-spacing: 0.22em;
+    }
+
+    .nav-logo .last {
+      font-weight: 300;
+      letter-spacing: 0.5em;
+      opacity: 0.6;
+      transform: translateX(10px);
+    }
+
+    .nav-logo:hover {
+      transform: translateY(2px) rotate(0deg);
+    }
+
+    .nav-logo:hover::before {
+      opacity: 1;
+      height: 3px;
+    }
+
+    .nav-logo:hover .last {
+      letter-spacing: 0.6em;
+      opacity: 0.8;
     }
 
     .nav-menu {
@@ -125,9 +202,9 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1fr 340px;
+      grid-template-columns: minmax(0, 1fr) 340px;
       gap: 4rem;
-      align-items: start;
+      align-items: center;
     }
 
     .hero-label {
@@ -157,7 +234,14 @@
       max-width: 720px;
     }
 
+    .hero-text {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
     .hero-bio {
+      text-align: justify;
       font-family: var(--ff-serif);
       font-size: 1.18rem;
       font-weight: 300;
@@ -196,9 +280,9 @@
     .hero-photo {
       width: 100%;
       aspect-ratio: 3/4;
-      border-radius: 2px;
+      border-radius: 0;
       overflow: hidden;
-      background: #1a1a1a;
+      background: transparent;
     }
 
     .hero-photo img {
@@ -217,18 +301,9 @@
     }
 
     .hero-photo-wrap::before {
-      content: '';
-      position: absolute;
-      top: -12px;
-      left: -12px;
-      right: 12px;
-      bottom: -12px;
-      border: 1px solid #333;
-      border-radius: 2px;
-      z-index: -1;
+      display: none;
     }
-
-    .section-divider {
+.section-divider {
       max-width: var(--max-w);
       margin: 0 auto;
       border: none;
@@ -236,12 +311,12 @@
     }
 
     .section-label {
-      font-size: .72rem;
+      font-size: 1rem;
       font-weight: 500;
-      letter-spacing: .18em;
+      letter-spacing: .14em;
       text-transform: uppercase;
       color: var(--ink-light);
-      margin-bottom: .75rem;
+      margin-bottom: 1rem;
     }
 
     .current-work {
@@ -415,7 +490,10 @@
 
 <nav>
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">Ahmed Nabwy</a>
+    <a href="index.html" class="nav-logo">
+      <span class="first">AHMED</span>
+      <span class="last">N A B W Y</span>
+    </a>
 
     <ul class="nav-menu">
       <li><a href="index.html">Home</a></li>
@@ -433,32 +511,16 @@
 
   <section class="hero">
     <div class="hero-grid">
-      <div>
-        <p class="hero-label">Political Science · Political Geography · Middle East Studies</p>
-
-        <h1 class="hero-title-main">Ahmed Nabwy</h1>
-
-        <p class="hero-subtitle">
-          Researcher and writer on state theory, political geography, and the structural power dynamics of the Middle East.
-        </p>
-
+      <div class="hero-text">
         <p class="hero-bio">
-          Ahmed Nabwy is a researcher and writer focusing on state theory, political geography, and the structural power dynamics of the Middle East. He is a doctoral candidate holding degrees from Cairo University and Hitit University, and an analytical writer for platforms including Al Jazeera's Midan and Jadaliyya.
+          Ahmed Nabwy is a researcher and writer focusing on state theory, political geography, and structural conflict in the Middle East. A doctoral candidate holding degrees from Cairo University and Hitit University, he grounds his analysis in a Marxist approach to state-building. His work unpacks the material and cultural forces driving political action, with specific attention to Iran, Turkey, and the Israeli-Palestinian conflict. Integrating urban geography directly into his analysis, he treats physical space, city infrastructures, and borders as active sites of capital accumulation, dispossession, and class struggle. He writes analytically for platforms including Al Jazeera’s Midan and Jadaliyya, mapping the intersection of spatial dynamics and state power to explain contemporary political phenomena.
         </p>
-
-        <div class="hero-actions">
-          <a href="research.html">Research</a>
-          <a href="media.html">Media</a>
-          <a href="engagement.html">Public Engagement</a>
-          <a href="contact.html">Contact</a>
-        </div>
       </div>
 
       <div class="hero-photo-wrap">
         <div class="hero-photo">
           <img src="profile.jpg" alt="Ahmed Nabwy">
         </div>
-        <p class="photo-caption">Ahmed Nabwy</p>
       </div>
     </div>
   </section>
