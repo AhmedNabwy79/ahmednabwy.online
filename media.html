@@ -2,70 +2,533 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Media – Ahmed Nabwy</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:'Jost',sans-serif;background:#111;color:#f0eeea;line-height:1.7;}
-    nav{background:#000;padding:1rem 2rem;border-bottom:1px solid #222;}
-    nav a{color:#fff;margin-right:15px;text-transform:uppercase;font-size:.8rem;}
-    main{max-width:900px;margin:80px auto;padding:0 20px;}
-    h1{font-family:'Cormorant Garamond',serif;font-weight:300;margin-bottom:30px;}
-    .item{margin-bottom:30px;}
-    .title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:5px;}
-    .meta{color:#888;font-size:.85rem;margin-bottom:5px;}
-    .desc{color:#c8c4bc;}
-    a.link{color:#c8c4bc;text-decoration:underline;}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ff-serif: 'Cormorant Garamond', Georgia, serif;
+      --ff-sans: 'Jost', sans-serif;
+      --max-w: 1120px;
+      --nav-h: 68px;
+
+      --bg: #111111;
+      --ink: #f0eeea;
+      --ink-mid: #c8c4bc;
+      --ink-light: #888480;
+      --rule: #2e2e2e;
+
+      --nav-bg: #000000;
+      --nav-text: #ffffff;
+      --nav-hover: #aaaaaa;
+      --nav-border: #222222;
+    }
+
+    body {
+      font-family: var(--ff-sans);
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.65;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      background-color: var(--nav-bg);
+      border-bottom: 1px solid var(--nav-border);
+      display: flex;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: var(--ff-serif);
+      font-size: 1.6rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--nav-text);
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      position: relative;
+      text-decoration: none;
+      z-index: 1;
+    }
+
+    .nav-logo .first {
+      font-size: 1.8rem;
+      font-weight: 600;
+      font-variant: small-caps;
+      letter-spacing: 0.22em;
+    }
+
+    .nav-logo .last {
+      font-size: 0.9rem;
+      font-weight: 300;
+      letter-spacing: 0.5em;
+      opacity: 0.6;
+      margin-top: 4px;
+      transform: translateX(10px);
+    }
+
+    .nav-logo::before {
+      content: '';
+      position: absolute;
+      left: -10%;
+      right: -20%;
+      bottom: -10px;
+      height: 2px;
+      background: var(--nav-text);
+      opacity: 0.7;
+      transform: skewX(-12deg);
+      z-index: -1;
+    }
+
+    .nav-logo::after {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: -30%;
+      width: 160%;
+      height: 1px;
+      background: var(--nav-text);
+      opacity: 0.25;
+      transform: rotate(6deg);
+      z-index: -1;
+    }
+
+    .nav-logo:hover {
+      transform: translateY(2px) rotate(0deg);
+    }
+
+    .nav-logo:hover::before {
+      opacity: 1;
+      height: 3px;
+    }
+
+    .nav-logo:hover .last {
+      letter-spacing: 0.6em;
+      opacity: 0.8;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: .25rem;
+      list-style: none;
+    }
+
+    .nav-menu li a {
+      padding: .45rem .75rem;
+      font-size: .8rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--nav-text);
+      text-decoration: none;
+    }
+
+    .nav-menu li a:hover {
+      color: var(--nav-hover);
+    }
+
+    main {
+      padding-top: var(--nav-h);
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    section {
+      padding: 5rem 0;
+      max-width: 980px;
+    }
+
+    h1 {
+      font-family: var(--ff-serif);
+      font-size: 2.6rem;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    .intro {
+      font-family: var(--ff-serif);
+      font-size: 1.18rem;
+      line-height: 1.75;
+      color: var(--ink-mid);
+      max-width: 760px;
+      margin-bottom: 3rem;
+      text-align: justify;
+    }
+
+    .subheading {
+      font-family: var(--ff-serif);
+      font-size: 1.45rem;
+      font-weight: 300;
+      margin: 3.5rem 0 1.5rem;
+      color: var(--ink);
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.6rem;
+    }
+
+    .media-card {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 1.2rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--rule);
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .media-card:hover .title {
+      color: var(--ink-mid);
+    }
+
+    .thumb {
+      width: 150px;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #1a1a1a;
+      border: 1px solid var(--rule);
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(10%);
+      transition: transform .25s ease, filter .25s ease;
+    }
+
+    .media-card:hover .thumb img {
+      transform: scale(1.04);
+      filter: grayscale(0%);
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.6rem;
+    }
+
+    .video-card {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1.2rem;
+    }
+
+    .video-action {
+      font-family: var(--ff-sans);
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-top: .35rem;
+    }
+
+    .video-card:hover .video-action {
+      color: var(--ink);
+    }
+
+    .video-thumb {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #1a1a1a;
+      margin-bottom: 1rem;
+    }
+
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .25s ease;
+    }
+
+    .video-card:hover .video-thumb img {
+      transform: scale(1.04);
+    }
+
+    .play-mark {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(0,0,0,.55);
+      border: 1px solid rgba(255,255,255,.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1rem;
+      padding-left: 3px;
+    }
+
+    .title {
+      font-family: var(--ff-serif);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: .35rem;
+    }
+
+    .meta {
+      font-family: var(--ff-sans);
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: .65rem;
+    }
+
+    .desc {
+      font-family: var(--ff-serif);
+      font-size: 1.08rem;
+      line-height: 1.7;
+      color: var(--ink-mid);
+    }
+
+    .desc a {
+      color: var(--ink-mid);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200,196,188,.45);
+    }
+
+    .desc a:hover {
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+
+    .label {
+      font-family: var(--ff-sans);
+      font-size: .72rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: .6rem;
+    }
+
+    .value {
+      font-family: var(--ff-serif);
+      font-size: 1.18rem;
+      line-height: 1.75;
+      color: var(--ink-mid);
+    }
+
+    .value a {
+      color: var(--ink-mid);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200,196,188,.45);
+    }
+
+    .value a:hover {
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+
+    footer {
+      background-color: #1c1c1c;
+      color: rgba(255,255,255,.35);
+      text-align: center;
+      padding: 2.5rem 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-logo {
+      font-family: var(--ff-serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.55);
+      letter-spacing: .04em;
+      margin-bottom: .75rem;
+    }
+
+    footer p {
+      font-size: .78rem;
+      letter-spacing: .04em;
+    }
+
+    @media (max-width: 900px) {
+      nav { position: static; height: auto; }
+      main { padding-top: 0; }
+
+      .nav-inner {
+        flex-direction: column;
+        gap: .8rem;
+        padding: 1rem 2rem;
+      }
+
+      .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .media-grid,
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .media-card {
+        grid-template-columns: 1fr;
+      }
+
+      .thumb {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 
 <body>
 
 <nav>
-  <a href="index.html" target="_blank">Home</a>
-  <a href="about.html" target="_blank">About</a>
-  <a href="research.html" target="_blank">Research</a>
-  <a href="teaching.html" target="_blank">Teaching</a>
-  <a href="media.html" target="_blank">Media</a>
-  <a href="engagement.html" target="_blank">Public Engagement</a>
-  <a href="contact.html" target="_blank">Contact</a>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="first">AHMED</span>
+      <span class="last">N A B W Y</span>
+    </a>
+
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="media.html">Media</a></li>
+      <li><a href="engagement.html">Public Engagement</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
 </nav>
 
 <main>
-  <h1>Media</h1>
+  <section>
+    <h1>Media</h1>
 
-  <div class="item">
-    <div class="title">TVP World – Political Analysis</div>
-    <div class="meta">2024</div>
-    <div class="desc">
-      Live and recorded analysis on Middle Eastern geopolitics, including Gaza war developments, Turkey’s foreign policy, and regional power dynamics.
+    <p class="intro">
+      As a public-facing researcher, Ahmed Nabwy contributes political analysis and commentary on Middle Eastern affairs across broadcast, podcast, and digital media. His interventions bring historical and structural perspectives to current events, with particular attention to Turkey, Palestine, Iran, and regional power dynamics.
+    </p>
+
+    <h2 class="subheading">Recent Highlights</h2>
+
+    <div class="media-grid">
+      <a class="media-card" href="https://www.youtube.com/watch?v=_sM-8RPFgWA&t=107s" target="_blank">
+        <div class="thumb"><img src="https://img.youtube.com/vi/_sM-8RPFgWA/hqdefault.jpg" alt="TVP World interview thumbnail"></div>
+        <div>
+          <div class="meta">Broadcast · TVP World</div>
+          <div class="title">Political Analysis on Middle Eastern Geopolitics</div>
+          <div class="desc">Live commentary and analysis on regional power dynamics, conflict, and diplomacy.</div>
+        </div>
+      </a>
+
+      <a class="media-card" href="https://www.youtube.com/watch?v=lQIyBixsvUE&t=77s" target="_blank">
+        <div class="thumb"><img src="https://img.youtube.com/vi/lQIyBixsvUE/hqdefault.jpg" alt="Balcony Podcast interview thumbnail"></div>
+        <div>
+          <div class="meta">Podcast · Balcony Podcast</div>
+          <div class="title">Turkish Politics and Political Authority</div>
+          <div class="desc">Discussion on elections, state power, and political transformation in Turkey.</div>
+        </div>
+      </a>
     </div>
-  </div>
 
-  <div class="item">
-    <div class="title">Balcony Podcast – Interview</div>
-    <div class="meta">2024</div>
-    <div class="desc">
-      Discussion on Turkish elections and the transformation of political authority.
+    <h2 class="subheading">Press Interviews</h2>
+
+    <div class="media-grid">
+      <a class="media-card" href="#" target="_blank">
+        <div class="thumb"><img src="/mnt/data/1747532159395.jpeg" alt="Al-Ayyam cover"></div>
+        <div>
+          <div class="meta">Al-Ayyam News · Algeria</div>
+          <div class="title">Lebanon in the Eye of the Storm</div>
+        </div>
+      </a>
+
+      <a class="media-card" href="#" target="_blank">
+        <div class="thumb"><img src="/mnt/data/1747532159671.jpeg" alt="Article page"></div>
+        <div>
+          <div class="meta">Feature Article</div>
+          <div class="title">Between Resistance Geography and New Alliances</div>
+        </div>
+      </a>
     </div>
-  </div>
 
-  <div class="item">
-    <div class="title">YouTube Media Appearances</div>
-    <div class="meta">Selected videos</div>
-    <div class="desc">
-      <a class="link" href="https://www.youtube.com/watch?v=_sM-8RPFgWA&t=107s" target="_blank">Watch Interview 1</a><br>
-      <a class="link" href="https://www.youtube.com/watch?v=lQIyBixsvUE&t=77s" target="_blank">Watch Interview 2</a><br>
-      <a class="link" href="https://www.youtube.com/watch?v=2_hU5vyqLcg&t=408s" target="_blank">Watch Interview 3</a><br>
-      <a class="link" href="https://www.youtube.com/watch?v=ec3L1AULuHo&t=2s" target="_blank">Watch Interview 4</a>
+    <h2 class="subheading">Seminars</h2>
+
+    <div class="video-grid">
+      <a class="video-card" href="https://www.youtube.com/watch?v=QvdehzCReJ4&t=598s" target="_blank">
+        <div class="video-thumb"><img src="https://img.youtube.com/vi/QvdehzCReJ4/hqdefault.jpg" alt="Seminar thumbnail"><span class="play-mark">▶</span></div>
+        <div class="meta">Seminar · International Conference for International Students in Turkey</div>
+        <div class="title">Presentation of a Peer-Reviewed Study</div>
+        <div class="desc">Part of my presentation of a peer-reviewed study at the International Conference for International Students in Turkey, organized annually by Türkiye Scholarships in cooperation with Turkish universities.</div>
+        <div class="video-action">Watch Seminar →</div>
+      </a>
     </div>
-  </div>
 
+    <h2 class="subheading">Selected Video Appearances</h2>
+
+    <div class="video-grid">
+      <a class="video-card" href="https://www.youtube.com/watch?v=_sM-8RPFgWA&t=107s" target="_blank">
+        <div class="video-thumb"><img src="https://img.youtube.com/vi/_sM-8RPFgWA/hqdefault.jpg" alt="Interview 1 thumbnail"><span class="play-mark">▶</span></div>
+        <div class="meta">Interview</div>
+        <div class="title">Middle Eastern Geopolitics – TVP World</div>
+        <div class="video-action">Watch Interview →</div>
+      </a>
+
+      <a class="video-card" href="https://www.youtube.com/watch?v=lQIyBixsvUE&t=77s" target="_blank">
+        <div class="video-thumb"><img src="https://img.youtube.com/vi/lQIyBixsvUE/hqdefault.jpg" alt="Interview 2 thumbnail"><span class="play-mark">▶</span></div>
+        <div class="meta">Interview</div>
+        <div class="title">Turkish Politics and Elections</div>
+        <div class="video-action">Watch Interview →</div>
+      </a>
+
+      <a class="video-card" href="https://www.youtube.com/watch?v=2_hU5vyqLcg&t=408s" target="_blank">
+        <div class="video-thumb"><img src="https://img.youtube.com/vi/2_hU5vyqLcg/hqdefault.jpg" alt="Interview 3 thumbnail"><span class="play-mark">▶</span></div>
+        <div class="meta">Interview</div>
+        <div class="title">Regional Power Dynamics Analysis</div>
+        <div class="video-action">Watch Interview →</div>
+      </a>
+
+      <a class="video-card" href="https://www.youtube.com/watch?v=ec3L1AULuHo&t=2s" target="_blank">
+        <div class="video-thumb"><img src="https://img.youtube.com/vi/ec3L1AULuHo/hqdefault.jpg" alt="Interview 4 thumbnail"><span class="play-mark">▶</span></div>
+        <div class="meta">Interview</div>
+        <div class="title">Foreign Policy and Regional Strategy</div>
+        <div class="video-action">Watch Interview →</div>
+      </a>
+    </div>
+  </section>
 </main>
+
+<footer>
+  <div class="footer-logo">Ahmed Nabwy</div>
+  <p>Researcher · Writer</p>
+</footer>
 
 </body>
 </html>
