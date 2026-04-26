@@ -2,66 +2,437 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Teaching – Ahmed Nabwy</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:'Jost',sans-serif;background:#111;color:#f0eeea;line-height:1.7;}
-    nav{background:#000;padding:1rem 2rem;border-bottom:1px solid #222;}
-    nav a{color:#fff;margin-right:15px;text-transform:uppercase;font-size:.8rem;}
-    main{max-width:900px;margin:80px auto;padding:0 20px;}
-    h1{font-family:'Cormorant Garamond',serif;font-weight:300;margin-bottom:30px;}
-    .item{margin-bottom:35px;}
-    .title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:5px;}
-    .meta{color:#888;font-size:.85rem;margin-bottom:5px;}
-    .desc{color:#c8c4bc;}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ff-serif: 'Cormorant Garamond', Georgia, serif;
+      --ff-sans: 'Jost', sans-serif;
+      --max-w: 1120px;
+      --nav-h: 68px;
+
+      --bg: #111111;
+      --ink: #f0eeea;
+      --ink-mid: #c8c4bc;
+      --ink-light: #888480;
+      --rule: #2e2e2e;
+
+      --nav-bg: #000000;
+      --nav-text: #ffffff;
+      --nav-hover: #aaaaaa;
+      --nav-border: #222222;
+    }
+
+    body {
+      font-family: var(--ff-sans);
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.65;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      background-color: var(--nav-bg);
+      border-bottom: 1px solid var(--nav-border);
+      display: flex;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: var(--ff-serif);
+      font-size: 1.6rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--nav-text);
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      position: relative;
+      text-decoration: none;
+      z-index: 1;
+    }
+
+    .nav-logo .first {
+      font-size: 1.8rem;
+      font-weight: 600;
+      font-variant: small-caps;
+      letter-spacing: 0.22em;
+    }
+
+    .nav-logo .last {
+      font-size: 0.9rem;
+      font-weight: 300;
+      letter-spacing: 0.5em;
+      opacity: 0.6;
+      margin-top: 4px;
+      transform: translateX(10px);
+    }
+
+    .nav-logo::before {
+      content: '';
+      position: absolute;
+      left: -10%;
+      right: -20%;
+      bottom: -10px;
+      height: 2px;
+      background: var(--nav-text);
+      opacity: 0.7;
+      transform: skewX(-12deg);
+      z-index: -1;
+    }
+
+    .nav-logo::after {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: -30%;
+      width: 160%;
+      height: 1px;
+      background: var(--nav-text);
+      opacity: 0.25;
+      transform: rotate(6deg);
+      z-index: -1;
+    }
+
+    .nav-logo:hover {
+      transform: translateY(2px) rotate(0deg);
+    }
+
+    .nav-logo:hover::before {
+      opacity: 1;
+      height: 3px;
+    }
+
+    .nav-logo:hover .last {
+      letter-spacing: 0.6em;
+      opacity: 0.8;
+    }
+
+    .nav-logo .first {
+      font-size: 1.8rem;
+      font-weight: 600;
+      font-variant: small-caps;
+      letter-spacing: 0.22em;
+    }
+
+    .nav-logo .last {
+      font-size: 0.9rem;
+      letter-spacing: 0.5em;
+      opacity: 0.6;
+      margin-top: 4px;
+      transform: translateX(10px);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: .25rem;
+      list-style: none;
+    }
+
+    .nav-menu li a {
+      padding: .45rem .75rem;
+      font-size: .8rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--nav-text);
+      text-decoration: none;
+    }
+
+    .nav-menu li a:hover {
+      color: var(--nav-hover);
+    }
+
+    main {
+      padding-top: var(--nav-h);
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    section {
+      padding: 5rem 0;
+      max-width: 780px;
+    }
+
+    h1 {
+      font-family: var(--ff-serif);
+      font-size: 2.6rem;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      position: relative;
+      padding-bottom: 1.2rem;
+    }
+
+    h1::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 1px;
+      background: var(--ink-light);
+      margin: 1rem auto 0;
+      opacity: 0.6;
+    }
+
+    .teaching-item {
+      counter-increment: course;
+
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .teaching-item:last-child {
+      border-bottom: none;
+    }
+
+    .title {
+      position: relative;
+      padding-left: 2rem;
+      font-family: var(--ff-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: .4rem;
+      color: var(--ink);
+    }
+
+    .title::before {
+      content: counter(course) ".";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: var(--ff-sans);
+      font-size: .75rem;
+      color: var(--ink-light);
+      letter-spacing: .1em;
+    }
+
+    .meta {
+      font-family: var(--ff-sans);
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: .7rem;
+    }
+
+    .desc {
+      font-family: var(--ff-serif);
+      font-size: 1.08rem;
+      line-height: 1.7;
+      color: var(--ink-mid);
+    }
+
+    .teaching-intro {
+      counter-reset: course;
+
+      background: #151515;
+      border: 1px solid var(--rule);
+      padding: 1.6rem;
+      margin-bottom: 2rem;
+    }
+
+    /* differentiate second box */
+    .teaching-intro:nth-of-type(2) {
+      background: linear-gradient(0deg, #d8cfaa, #e2d7b8);
+      border-color: #ddd;
+      margin-top: 3rem;
+      padding-left: 2rem;
+      position: relative;
+      color: #111;
+
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    /* subtle grain texture */
+    .teaching-intro:nth-of-type(2)::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+
+    .teaching-intro:nth-of-type(2) .subhead {
+      color: #555;
+    }
+
+    .teaching-intro:nth-of-type(2) .intro-desc,
+    .teaching-intro:nth-of-type(2) .desc {
+      color: #222;
+    }
+
+    .teaching-intro:nth-of-type(2) .title {
+      color: #111;
+    }
+
+    .teaching-intro:nth-of-type(2) .meta {
+      color: #666;
+    }
+
+    .teaching-intro:nth-of-type(2)::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20px;
+      bottom: 20px;
+      width: 1px;
+      background: #999;
+      opacity: 0.3;
+    }
+
+    .teaching-intro:nth-of-type(2)::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20px;
+      bottom: 20px;
+      width: 1px;
+      background: var(--ink-light);
+      opacity: 0.3;
+    }
+
+    .subhead {
+      font-family: var(--ff-sans);
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: .8rem;
+    }
+
+    .intro-desc {
+      font-family: var(--ff-serif);
+      font-size: 1.12rem;
+      line-height: 1.75;
+      color: var(--ink-mid);
+    }
+
+    footer {
+      background-color: #1c1c1c;
+      color: rgba(255,255,255,.35);
+      text-align: center;
+      padding: 2.5rem 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-logo {
+      font-family: var(--ff-serif);
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.55);
+      margin-bottom: .7rem;
+    }
+
+    footer p {
+      font-size: .78rem;
+      letter-spacing: .04em;
+    }
+
+    @media (max-width: 900px) {
+      nav { position: static; height: auto; }
+      main { padding-top: 0; }
+
+      .nav-inner {
+        flex-direction: column;
+        gap: .8rem;
+        padding: 1rem 2rem;
+      }
+
+      .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 
 <body>
 
 <nav>
-  <a href="index.html" target="_blank">Home</a>
-  <a href="about.html" target="_blank">About</a>
-  <a href="research.html" target="_blank">Research</a>
-  <a href="teaching.html" target="_blank">Teaching</a>
-  <a href="media.html" target="_blank">Media</a>
-  <a href="engagement.html" target="_blank">Public Engagement</a>
-  <a href="contact.html" target="_blank">Contact</a>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="first">AHMED</span>
+      <span class="last">N A B W Y</span>
+    </a>
+
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="media.html">Media</a></li>
+      <li><a href="engagement.html">Public Engagement</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
 </nav>
 
 <main>
-  <h1>Teaching</h1>
+  <section>
+    <h1>Teaching</h1>
 
-  <div class="item">
-    <div class="title">Introduction to Political Theory</div>
-    <div class="meta">The Arab Center for Research and Policy Studies</div>
-    <div class="desc">
-      Delivered undergraduate-level lectures on foundational political theory, including key thinkers, major ideological traditions, and contemporary debates in political thought.
+    <div class="teaching-intro">
+      <div class="subhead">Teaching Philosophy</div>
+      <div class="intro-desc">
+        I treat teaching as an encounter between theory and political reality, using canonical texts to examine questions of state formation, sovereignty, and space in the Middle East. Courses are problem-driven, emphasizing close reading, argumentation, and linking theory to concrete political processes.
+      </div>
     </div>
-  </div>
 
-  <div class="item">
-    <div class="title">Political Sociology Readings</div>
-    <div class="meta">Graduate-level engagement</div>
-    <div class="desc">
-      Facilitated discussions on state formation, power structures, and the relationship between society and political authority through core theoretical texts.
+    <div class="teaching-intro">
+      <div class="subhead">Selected Courses</div>
+      <div class="intro-desc">
+        Delivered undergraduate-level lectures on foundational political theory, including key thinkers, major ideological traditions, and contemporary debates in political thought.
+      </div>
+
+      <div class="teaching-item">
+        <div class="title">Political Sociology Readings</div>
+        <div class="meta">Graduate-level engagement</div>
+        <div class="desc">
+          Facilitated discussions on state formation, power structures, and the relationship between society and political authority through core theoretical texts.
+        </div>
+      </div>
+
+      <div class="teaching-item">
+        <div class="title">State Theory Seminar</div>
+        <div class="meta">Advanced academic training</div>
+        <div class="desc">
+          Focused on modern and contemporary theories of the state, including sovereignty, legitimacy, and the role of institutions in shaping political order.
+        </div>
+      </div>
+
     </div>
-  </div>
 
-  <div class="item">
-    <div class="title">State Theory Seminar</div>
-    <div class="meta">Advanced academic training</div>
-    <div class="desc">
-      Focused on modern and contemporary theories of the state, including sovereignty, legitimacy, and the role of institutions in shaping political order.
-    </div>
-  </div>
-
+  </section>
 </main>
+
+<footer>
+  <div class="footer-logo">Ahmed Nabwy</div>
+  <p>Researcher · Writer</p>
+</footer>
 
 </body>
 </html>
