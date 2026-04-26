@@ -2,66 +2,778 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Research – Ahmed Nabwy</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:'Jost',sans-serif;background:#111;color:#f0eeea;line-height:1.7;}
-    nav{background:#000;padding:1rem 2rem;border-bottom:1px solid #222;}
-    nav a{color:#fff;margin-right:15px;text-transform:uppercase;font-size:.8rem;}
-    main{max-width:900px;margin:80px auto;padding:0 20px;}
-    h1{font-family:'Cormorant Garamond',serif;font-weight:300;margin-bottom:30px;}
-    .item{margin-bottom:35px;}
-    .title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:5px;}
-    .meta{color:#888;font-size:.85rem;margin-bottom:5px;}
-    .desc{color:#c8c4bc;}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ff-serif: 'Cormorant Garamond', Georgia, serif;
+      --ff-sans: 'Jost', sans-serif;
+      --max-w: 1120px;
+      --nav-h: 68px;
+
+      --bg: #111111;
+      --ink: #f0eeea;
+      --ink-mid: #c8c4bc;
+      --ink-light: #888480;
+      --rule: #2e2e2e;
+
+      --nav-bg: #000000;
+      --nav-text: #ffffff;
+      --nav-hover: #aaaaaa;
+      --nav-border: #222222;
+
+      --footer-bg: #1c1c1c;
+      --footer-text: rgba(255,255,255,.35);
+      --footer-logo: rgba(255,255,255,.55);
+
+      --paper-1: #d8cfaa;
+      --paper-2: #e2d7b8;
+      --paper-border: #d4caa5;
+      --sepia-dark: #2b2415;
+      --sepia-mid: #3a3324;
+      --sepia-light: #7a6f4f;
+      --sepia-line: #a89a6a;
+    }
+
+    body {
+      font-family: var(--ff-sans);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      background-color: var(--nav-bg);
+      border-bottom: 1px solid var(--nav-border);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--ff-serif);
+      font-size: 1.6rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--nav-text);
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      position: relative;
+      text-decoration: none;
+      z-index: 1;
+    }
+
+    .nav-logo .first {
+      font-size: 1.8rem;
+      font-weight: 600;
+      font-variant: small-caps;
+      letter-spacing: 0.22em;
+    }
+
+    .nav-logo .last {
+      font-size: 0.9rem;
+      font-weight: 300;
+      letter-spacing: 0.5em;
+      opacity: 0.6;
+      margin-top: 4px;
+      transform: translateX(10px);
+    }
+
+    .nav-logo::before {
+      content: '';
+      position: absolute;
+      left: -10%;
+      right: -20%;
+      bottom: -10px;
+      height: 2px;
+      background: var(--nav-text);
+      opacity: 0.7;
+      transform: skewX(-12deg);
+      z-index: -1;
+    }
+
+    .nav-logo::after {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: -30%;
+      width: 160%;
+      height: 1px;
+      background: var(--nav-text);
+      opacity: 0.25;
+      transform: rotate(6deg);
+      z-index: -1;
+    }
+
+    .nav-logo:hover { transform: translateY(2px) rotate(0deg); }
+    .nav-logo:hover::before { opacity: 1; height: 3px; }
+    .nav-logo:hover .last { letter-spacing: 0.6em; opacity: 0.8; }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: .25rem;
+      list-style: none;
+    }
+
+    .nav-menu > li > a {
+      display: flex;
+      align-items: center;
+      padding: .45rem .75rem;
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--nav-text);
+      transition: color .2s;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .nav-menu > li > a:hover { color: var(--nav-hover); }
+
+    main {
+      padding-top: var(--nav-h);
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    section {
+      padding: 5rem 0;
+      max-width: var(--max-w);
+    }
+
+    h1 {
+      font-family: var(--ff-serif);
+      font-size: 2.6rem;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    h1::after {
+      content: '';
+      width: 60px;
+      height: 1px;
+      background: var(--ink-light);
+      display: block;
+      margin: 1rem auto 0;
+    }
+
+    .research-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      font-family: var(--ff-sans);
+      font-size: .8rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .research-tabs button {
+      background: transparent;
+      border: none;
+      color: var(--ink-light);
+      font: inherit;
+      text-transform: inherit;
+      letter-spacing: inherit;
+      cursor: pointer;
+      padding-bottom: .3rem;
+      border-bottom: 1px solid transparent;
+      transition: color .2s, border-color .2s;
+    }
+
+    .research-tabs button:hover,
+    .research-tabs button.active {
+      color: var(--ink);
+      border-bottom-color: var(--ink);
+    }
+
+    .intro {
+      text-align: center;
+      font-family: var(--ff-serif);
+      color: var(--ink-mid);
+      max-width: 680px;
+      margin: 0 auto 3rem;
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    .research-panel { display: none; }
+    .research-panel.active { display: block; }
+
+    .research-subgrid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .research-subbox {
+      border: 1px solid var(--paper-border);
+      padding: 1.4rem;
+      background: linear-gradient(0deg, var(--paper-1), var(--paper-2));
+      color: var(--sepia-dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .research-subbox::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+
+    .subbox-title {
+      font-family: var(--ff-serif);
+      font-size: 1.2rem;
+      margin-bottom: .6rem;
+      color: var(--sepia-dark);
+      position: relative;
+      z-index: 1;
+    }
+
+    
+
+    .research-item {
+      position: relative;
+      z-index: 1;
+    }
+
+    .publication-row {
+      display: grid;
+      grid-template-columns: 105px 1fr;
+      gap: .9rem;
+      align-items: start;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .publication-thumb {
+      width: 100%;
+      aspect-ratio: 16/10;
+      border: 1px solid rgba(43,36,21,.22);
+      overflow: hidden;
+      background: rgba(255,255,255,.12);
+    }
+
+    .publication-thumb img,
+    .highlight-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .research-title {
+      font-family: var(--ff-serif);
+      color: var(--sepia-dark);
+      font-size: 1.05rem;
+      line-height: 1.35;
+      margin-bottom: .45rem;
+      font-weight: 500;
+    }
+
+    .research-meta {
+      font-size: .7rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--sepia-light);
+      margin-bottom: .55rem;
+    }
+
+    .research-desc {
+      font-family: var(--ff-serif);
+      color: var(--sepia-mid);
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+
+    .research-action,
+    .highlight-action {
+      margin-top: .7rem;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      color: var(--sepia-dark);
+      display: inline-block;
+      padding: .25rem 0;
+    }
+
+    .research-action::after,
+    .highlight-action::after {
+      content: '';
+      display: block;
+      width: 55px;
+      height: 2px;
+      background: #8f7a3a;
+      margin-top: .35rem;
+    }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: .5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .highlight-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid rgba(43,36,21,.22);
+      background: rgba(255,255,255,.12);
+      overflow: hidden;
+      transition: transform .2s ease, border-color .2s ease;
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(43,36,21,.45);
+    }
+
+    .highlight-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: #c8bc92;
+      border-bottom: 1px solid rgba(43,36,21,.2);
+    }
+
+    .highlight-thumb img {
+      filter: saturate(.9) contrast(.95);
+      transition: transform .25s ease;
+    }
+
+    .highlight-card:hover .highlight-thumb img { transform: scale(1.04); }
+
+    .highlight-content { padding: 1rem; }
+
+    .highlight-title {
+      font-family: var(--ff-serif);
+      font-size: 1.05rem;
+      line-height: 1.35;
+      color: var(--sepia-dark);
+      margin-bottom: .45rem;
+      font-weight: 500;
+    }
+
+    .highlight-meta {
+      font-size: .7rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--sepia-light);
+      margin-bottom: .6rem;
+    }
+
+    .selected-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .9rem;
+      margin-top: .5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .selected-grid .highlight-card {
+      display: flex;
+      gap: .8rem;
+      align-items: center;
+      padding: .5rem;
+      background: rgba(255,255,255,.08);
+    }
+
+    .selected-grid .highlight-thumb {
+      width: 110px;
+      height: 70px;
+      aspect-ratio: auto;
+      border-bottom: none;
+      flex-shrink: 0;
+    }
+
+    .selected-grid .highlight-content { padding: .2rem 0; }
+    .selected-grid .highlight-title { font-size: .95rem; line-height: 1.3; margin-bottom: .25rem; }
+    .selected-grid .highlight-meta { font-size: .65rem; margin-bottom: .2rem; }
+    .selected-grid .highlight-action { font-size: .7rem; margin-top: .15rem; }
+    .selected-grid .highlight-action::after { width: 38px; height: 1px; }
+
+    .selected-grid .highlight-card.extra-article {
+      display: none;
+    }
+
+    .selected-grid .highlight-card.extra-article.visible {
+      display: flex;
+    }
+
+    .see-more-wrap {
+      grid-column: 1 / -1;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .see-more-btn {
+      font-family: var(--ff-sans);
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: transparent;
+      color: var(--sepia-dark);
+      border: 1px solid rgba(43,36,21,.35);
+      padding: .75rem 1.2rem;
+      cursor: pointer;
+      transition: background .2s, border-color .2s;
+    }
+
+    .see-more-btn:hover {
+      background: rgba(43,36,21,.08);
+      border-color: var(--sepia-dark);
+    }
+
+    footer {
+      background-color: var(--footer-bg);
+      color: var(--footer-text);
+      text-align: center;
+      padding: 2.5rem 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-logo {
+      font-family: var(--ff-serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--footer-logo);
+      letter-spacing: .04em;
+      margin-bottom: .75rem;
+    }
+
+    footer p { font-size: .78rem; letter-spacing: .04em; }
+
+    @media (max-width: 900px) {
+      nav { position: static; height: auto; }
+      main { padding-top: 0; }
+      .nav-inner { flex-direction: column; gap: .8rem; padding: 1rem 2rem; }
+      .nav-menu { flex-wrap: wrap; justify-content: center; }
+      .highlight-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .selected-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 700px) {
+      main { padding-left: 1.2rem; padding-right: 1.2rem; }
+      .research-tabs { flex-direction: column; align-items: center; gap: .8rem; }
+      .highlight-grid { grid-template-columns: 1fr; }
+      .publication-row { grid-template-columns: 1fr; }
+      .selected-grid .highlight-card { align-items: flex-start; }
+    }
   </style>
 </head>
 
 <body>
 
 <nav>
-  <a href="index.html" target="_blank">Home</a>
-  <a href="about.html" target="_blank">About</a>
-  <a href="research.html" target="_blank">Research</a>
-  <a href="teaching.html" target="_blank">Teaching</a>
-  <a href="media.html" target="_blank">Media</a>
-  <a href="engagement.html" target="_blank">Public Engagement</a>
-  <a href="contact.html" target="_blank">Contact</a>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="first">AHMED</span>
+      <span class="last">N A B W Y</span>
+    </a>
+
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="media.html">Media</a></li>
+      <li><a href="engagement.html">Public Engagement</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
 </nav>
 
 <main>
-  <h1>Research</h1>
+  <section>
+    <h1>Research</h1>
 
-  <div class="item">
-    <div class="title">The Deferred Modern State</div>
-    <div class="meta">Master’s Thesis</div>
-    <div class="desc">
-      An analysis of sovereignty, representation, and legitimacy in the Arab world, examining why the modern state project remains structurally incomplete.
+    <div class="research-tabs" role="tablist" aria-label="Research sections">
+      <button type="button" class="active" data-panel="academic" aria-controls="academic" aria-selected="true">Academic Publications</button>
+      <button type="button" data-panel="public" aria-controls="public" aria-selected="false">Public Scholarship</button>
     </div>
-  </div>
 
-  <div class="item">
-    <div class="title">Power, Space, and Representation: Everyday Politics in Cairo</div>
-    <div class="meta">Doctoral Project</div>
-    <div class="desc">
-      A study of how urban space, symbolic power, and everyday practices shape political authority and resistance in contemporary Cairo.
+    
+
+    <div id="academic" class="research-panel active" role="tabpanel">
+      <div class="research-subgrid">
+        <div class="research-subbox">
+          <div class="subbox-title">Books</div>
+          
+
+          <div class="research-item">
+            <div class="research-title">Ali Abdel Razek’s “Islam and the Principles of Governance” – A Critical Reading</div>
+            <div class="research-meta">Cairo University Press · Book Chapter · 2016</div>
+            <div class="research-desc">Published in a Cairo University volume marking the centenary of the Egyptian Enlightenment; a concise critical reading of Ali Abdel Razek’s work.</div>
+          </div>
+        </div>
+
+        <div class="research-subbox">
+          <div class="subbox-title">Selected Journal Articles & Book Chapters</div>
+
+          <div class="research-item">
+            <a class="publication-row" href="https://www.arkansrp.com/2025/03/12/separation-religion-and-power/" target="_blank" rel="noopener noreferrer">
+              <div class="publication-thumb">
+                <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='380'%3E%3Crect width='100%25' height='100%25' fill='%23e2d7b8'/%3E%3Crect x='20' y='20' width='560' height='340' fill='none' stroke='%238f7a3a' stroke-width='2' opacity='0.4'/%3E%3Ctext x='40' y='70' font-family='Georgia, serif' font-size='20' fill='%237a6f4f'%3EArkan Studies%3C/text%3E%3CforeignObject x='40' y='100' width='520' height='200'%3E%3Cdiv xmlns='http://www.w3.org/1999/xhtml' style='font-family:Georgia,serif;font-size:22px;line-height:1.2;color:%232b2415;font-weight:500;'%3EThe Debate on the Separation of Religion and Power in Western Europe and Its Implications for the Islamic World%3C/div%3E%3C/foreignObject%3E%3C/svg%3E" alt="Article thumbnail">
+              </div>
+              <div>
+                <div class="research-title">The Debate on the Separation of Religion and Power in Western Europe and Its Implications for the Islamic World</div>
+                <div class="research-meta">Arkan for Studies, Research and Publishing · 2025</div>
+                <div class="research-action">Read More →</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="item">
-    <div class="title">Public Scholarship</div>
-    <div class="meta">Articles & Essays</div>
-    <div class="desc">
-      Analytical writing on Palestine, authoritarianism, and regional power structures published across Arabic and English platforms.
+    <div id="public" class="research-panel" role="tabpanel">
+      <div class="research-subgrid">
+        <div class="research-subbox">
+          <div class="subbox-title">Highlights</div>
+          
+          <div class="highlight-grid" id="highlightArticles"></div>
+        </div>
+
+        <div class="research-subbox">
+          <div class="subbox-title">Selected Articles</div>
+          <div class="selected-grid" id="selectedArticles"></div>
+        </div>
+      </div>
     </div>
-  </div>
-
+  </section>
 </main>
+
+<footer>
+  <div class="footer-logo">Ahmed Nabwy</div>
+  <p>Researcher · Writer</p>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const highlightArticles = [
+      {
+        title: 'The Palestinian Struggle: From Seeking Liberation to Statehood',
+        meta: 'Ida2at · 2024',
+        url: 'https://www.ida2at.com/palestine-liberation-country-journey/'
+      },
+      {
+        title: 'Why Does the United States Support Israel?',
+        meta: 'Jadaliyya · 2025',
+        url: 'https://www.jadaliyya.com/Details/46613/%D9%84%D9%85%D8%A7%D8%B0%D8%A7-%D8%AA%D8%AF%D8%B9%D9%85-%D8%A7%D9%84%D9%88%D9%84%D8%A7%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%85%D8%AA%D8%AD%D8%AF%D8%A9-%D8%A5%D8%B3%D8%B1%D8%A7%D8%A6%D9%8A%D9%84'
+      },
+      {
+        title: 'Cafés: On the Rebellion of Geography and the Geography of Rebellion',
+        meta: 'Democracy Magazine · 2020',
+        url: 'https://www.academia.edu/43359343/%D8%AF%D8%B1%D8%A7%D8%B3%D8%A9_%D8%A7%D9%84%D9%85%D9%82%D8%A7%D9%87%D9%8A_%D8%B9%D9%86_%D8%AA%D9%85%D8%B1%D8%AF_%D8%A7%D9%84%D8%AC%D8%BA%D8%B1%D8%A7%D9%81%D9%8A%D8%A7_%D9%88%D8%AC%D8%BA%D8%B1%D8%A7%D9%81%D9%8A%D8%A7_%D8%A7%D9%84%D8%AA%D9%85%D8%B1%D8%AF'
+      }
+    ];
+
+    const selectedArticles = [
+      { title: 'On Suicide: Modernity, the Body, and Redemption', meta: 'Sasapost · 2021', url: 'https://www.academia.edu/49137148/%D8%AA%D8%AF%D9%88%D9%8A%D9%86%D8%A9_%D9%87%D9%88%D8%A7%D9%85%D8%B4_%D8%B9%D9%84%D9%89_%D8%A7%D9%84%D8%A7%D9%86%D8%AA%D8%AD%D8%A7%D8%B1_%D8%A7%D9%84%D8%AD%D8%AF%D8%A7%D8%AB%D8%A9_%D9%88%D8%A7%D9%84%D8%AC%D8%B3%D8%AF_%D9%88%D8%A7%D9%84%D8%AE%D9%84%D8%A7%D8%B5' },
+      { title: 'Cinema and Political Theory: The Film “The Land” as a Case Study', meta: 'Sasapost · 2018', url: 'https://www.academia.edu/41475150/%D9%85%D9%82%D8%A7%D9%84%D8%A9_%D8%A7%D9%84%D8%B3%D9%8A%D9%86%D9%85%D8%A7_%D9%88%D8%A7%D9%84%D8%AA%D9%86%D8%B8%D9%8A%D8%B1_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%B3%D9%8A_%D9%81%D9%8A%D9%84%D9%85_%D8%A7%D9%84%D8%A3%D8%B1%D8%B6_%D9%86%D9%85%D9%88%D8%B0%D8%AC%D9%8B%D8%A7' },
+      { title: 'Why Does the Millennial Generation Love Mahraganat Music?', meta: 'Foxtale · 2020', url: 'https://www.academia.edu/43359724/%D8%AA%D8%AF%D9%88%D9%8A%D9%86%D8%A9_%D9%84%D9%85%D8%A7%D8%B0%D8%A7_%D8%A3%D8%AD%D8%A8_%D8%AC%D9%8A%D9%84_%D8%A7%D9%84%D8%A3%D9%84%D9%81%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D9%87%D8%B1%D8%AC%D8%A7%D9%86%D8%A7%D8%AA' },
+      { title: 'Mahraganat Music: The Return of Those Excluded from History', meta: 'Arab Center for Research and Studies · 2020', url: 'https://www.acrseg.org/41502' },
+      { title: 'Critique of Mahraganat Music', meta: 'Arab Center for Research and Studies · 2020', url: 'https://www.acrseg.org/41503' },
+      { title: 'From Chomsky to Turkish: A Literary and Linguistic Reflection', meta: 'Ankara Hacı Bayram Veli University · 2025', url: 'https://www.academia.edu/128976556/Chomsky_Nas%C4%B1l_Beni_Yan%C4%B1ltt%C4%B1_ve_T%C3%BCrk%C3%A7eyi_Edebiyat_ve_%C5%9Eiirle_Nas%C4%B1l_A%C5%9Fkla_Tan%C4%B1d%C4%B1m' },
+      { title: 'Praise for the Margin: On Turkey’s True Builders', meta: 'Turkish Language and Literature Association · 2025', url: 'https://www.academia.edu/128976458/MARJ%C4%B0NE_%C3%96VG%C3%9C_T%C3%9CRK%C4%B0YEN%C4%B0N_GER%C3%87EK_%C4%B0N%C5%9EAAT%C3%87ILARINA_DA%C4%B0R' },
+      { title: 'Beggars and Nobles', meta: 'Ida2at · 2017', url: 'https://www.ida2at.com/beggars-and-poor/' },
+      { title: 'Epistemic Authority and the Frailty of the Intellectual', meta: 'Al Jazeera Blogs · 2017', url: 'https://www.aljazeera.net/blogs/2017/10/4/%D8%A7%D9%84%D8%B3%D9%84%D8%B7%D8%A9-%D8%A7%D9%84%D9%85%D8%B9%D8%B1%D9%81%D9%8A%D8%A9-%D9%88%D9%88%D9%87%D9%86-%D8%A7%D9%84%D9%85%D8%AB%D9%82%D9%81' },
+      { title: 'Between Truth and Lying: On the Founding Myth of Political Science', meta: 'Elite Magazine · 2020', url: 'https://www.academia.edu/43632221/Short_Article_Between_truth_and_lying_on_the_founding_myth_of_political_science' },
+      { title: 'Europe Today: One Secularism or Multiple Secularisms?', meta: 'Ida2at · 2018', url: 'https://www.acrseg.org/41510' },
+      { title: 'Corona and Philosophy: Endless Dilemmas', meta: 'Arab Center for Research and Studies · 2020', url: 'https://www.acrseg.org/41569' },
+      { title: 'The Illusion of the Post-Corona State: States Don’t Emerge This Way', meta: 'Sasapost · 2021', url: 'https://www.academia.edu/65194084/%D9%85%D9%82%D8%A7%D9%84%D8%A9_%D9%88%D9%8E%D9%87%D9%92%D9%85_%D8%AF%D9%88%D9%84%D8%A9_%D9%85%D8%A7_%D8%A8%D8%B9%D8%AF_%D8%A7%D9%84%D9%83%D9%88%D8%B1%D9%88%D9%86%D8%A7_%D8%A7%D9%84%D8%AF%D9%88%D9%84_%D9%84%D8%A7_%D8%AA%D9%86%D8%B4%D8%A3_%D9%87%D9%83%D8%B0%D8%A7' },
+      { title: 'Free Fall: On Writing as Catastrophe', meta: 'Sasapost · 2021', url: 'https://www.academia.edu/65194919/%D8%AA%D8%AF%D9%88%D9%8A%D9%86%D8%A9_%D8%A7%D9%84%D8%B3%D9%82%D9%88%D8%B7_%D8%A7%D9%84%D8%AD%D8%B1_%D8%B9%D9%86_%D8%A7%D9%84%D9%83%D8%AA%D8%A7%D8%A8%D8%A9_%D9%83%D9%81%D8%A7%D8%AC%D8%B9%D8%A9' },
+      { 
+        title: 'On Writing and Suffering', 
+        meta: 'Al Jazeera Blogs · 2017', 
+        url: 'https://www.aljazeera.net/blogs/2017/5/21/%D8%A7%D9%84%D9%83%D8%AA%D8%A7%D8%A8%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D9%86%D8%A7%D8%A9',
+        image: '/mnt/data/image(12).png'
+      },
+      { title: 'My Lost Years Studying Political Science in Egypt', meta: 'Sasapost · 2018', url: 'https://www.academia.edu/41475144/%D8%AA%D8%AF%D9%88%D9%8A%D9%86%D8%A9_%D8%B3%D9%86%D9%88%D8%A7%D8%AA%D9%8A_%D8%A7%D9%84%D8%B6%D8%A7%D8%A6%D8%B9%D8%A9_%D9%81%D9%8A_%D8%AF%D8%B1%D8%A7%D8%B3%D8%A9_%D8%A7%D9%84%D8%B9%D9%84%D9%88%D9%85_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%B3%D9%8A%D8%A9_%D9%81%D9%8A_%D9%85%D8%B5%D8%B1' },
+      { title: 'In Answering the Question: Has Political Islam Ended?', meta: 'Arab Center for Research and Studies · 2020', url: 'https://www.acrseg.org/41518' },
+      { title: 'Duality of Discourse: How Does the Turkish Justice and Development Party Manage Its Interests at Home and Abroad?', meta: 'Arab Center for Research and Studies · 2020', url: 'https://www.acrseg.org/41461' },
+      { title: 'MOIC and Post-Islamism', meta: 'Ida2at · 2018', url: 'https://www.ida2at.com/moyek-post-islamism/' },
+      { title: 'Algeria’s Islamists: From the Black Decade to the Election of Tebboune', meta: 'Arab Center for Research and Studies · 2020', url: 'https://www.acrseg.org/41456' },
+      { title: 'The Sudanese Muslim Brotherhood: From Destroying the State to Disrupting the Revolution', meta: 'Arab Center for Research and Studies · 2020', url: 'https://www.acrseg.org/41487' },
+      { title: 'Morocco’s Justice and Development Party: What Remains of Political Islam?', meta: 'Arab Center for Research and Studies · 2020', url: 'https://www.acrseg.org/41492' },
+      { title: 'Ennahda: A Reading of the Movement’s Trajectory and Its Experience in Governance', meta: 'Arab Center for Research and Studies · 2020', url: 'https://www.acrseg.org/41476' },
+      { title: 'Sahel and Sahara Extremists and French Forces: Common Interests or Prolonged Hostility?', meta: 'Arab Center for Research and Studies · 2020', url: 'https://www.acrseg.org/41593' },
+      { title: 'Has Jihad for Jerusalem Become a Sunni Privilege?', meta: 'Academia · 2024', url: 'https://www.academia.edu/128497021/%D9%85%D9%82%D8%A7%D9%84%D8%A9_%DA%BE%D9%84_%D8%AA%D8%AD%D9%88%D9%84_%D8%A7%D9%84%D8%AC%DA%BE%D8%A7%D8%AF_%D9%81%D9%8A_%D8%B3%D8%A8%DB%8C%D9%84_%D8%A7%D9%84%D9%82%D8%AF%D8%B3_%D8%A5%D9%84%D9%89_%D8%A7%D9%85%D8%AA%DB%8C%D8%A7%D8%B2_%D8%B3%D9%86%D9%8A_' },
+      { title: 'The Role of Think Tanks in Shaping Turkish Foreign Policy in the Middle East', meta: 'Arab Center for Research and Studies · 2020', url: 'https://www.acrseg.org/41495' },
+      { title: 'The Turkey–Syria Earthquake: Why Is the Political Question Absent?', meta: 'Ida2at · 2023', url: 'https://www.ida2at.com/turkey-syria-earthquake-why-political-question-absent/' },
+      { title: 'The Tunisian Crisis: A Constitutional Battleground for Power', meta: 'Ida2at · 2022', url: 'https://www.ida2at.com/tunisian-crisis-struggle-for-power-overwhelmed-by-constitution/' },
+      { title: 'An Attempt to Understand the Qatari Ministerial Reshuffle', meta: 'Arab Center for Research and Studies · 2020', url: 'https://www.acrseg.org/41480' },
+      { title: 'The Risks of Contracting COVID-19: Refugees in Türkiye and the Limits of Confrontation', meta: 'Arab Center for Research and Studies · 2020', url: 'https://www.acrseg.org/41516' },
+      { title: 'Why Should Everyone Support Khaled Ali for President?', meta: 'Al Jazeera Blogs · 2017', url: 'https://www.aljazeera.net/blogs/2017/11/12/%D9%84%D9%85%D8%A7%D8%B0%D8%A7-%D8%B9%D9%84%D9%89-%D8%A7%D9%84%D8%AC%D9%85%D9%8A%D8%B9-%D8%A3%D9%86-%D9%8A%D8%AF%D8%B9%D9%85-%D8%AE%D8%A7%D9%84%D8%AF-%D8%B9%D9%84%D9%8A-%D9%85%D8%B1%D8%B4%D8%AD%D8%A7' },
+      { title: 'An Alternative Romanticism with a Capitalist Flavor', meta: 'Ida2at · 2021', url: 'https://www.ida2at.com/alternative-romance-capitalist-flavour/' },
+      { title: 'Love and Power: Or Love as a Rebirth of the World', meta: 'Ida2at · 2018', url: 'https://www.ida2at.com/love-as-a-rebirth-world-again/' },
+      { title: 'Liquid Love: Why Does Our Generation Fail at Love?', meta: 'Ida2at · 2018', url: 'https://www.ida2at.com/liquid-love-why-our-generation-fails-in-love/' },
+      { title: 'The Great Escape: Love Between Lightness and Gravity', meta: 'Al Jazeera Blogs · 2017', url: 'https://www.aljazeera.net/blogs/2017/9/11/%D8%A7%D9%84%D9%87%D8%B1%D9%88%D8%A8-%D8%A7%D9%84%D9%83%D8%A8%D9%8A%D8%B1-%D8%A7%D9%84%D8%AD%D8%A8-%D8%A8%D9%8A%D9%86-%D8%A7%D9%84%D8%AE%D9%81%D8%A9-%D9%88%D8%A7%D9%84%D8%AB%D9%82%D9%84' },
+      { title: 'The Best Offer: Love Between Truth and Deception', meta: 'Al Jazeera Blogs · 2018', url: 'https://www.aljazeera.net/blogs/2018/3/13/%d9%81%d9%8a%d9%84%d9%85-the-best-offer-%d8%a7%d9%84%d8%ad%d8%a8-%d8%a8%d9%8a%d9%86-%d8%a7%d9%84%d8%ad%d9%82%d9%8a%d9%82%d8%a9-%d9%88%d8%a7%d9%84%d8%ae%d8%af%d8%a7%d8%b9' },
+      { title: 'Love as Transcendence of the Ego', meta: 'Al Jazeera Blogs · 2017', url: 'https://www.aljazeera.net/blogs/2017/10/24/%D8%A7%D9%84%D8%AD%D8%A8-%D9%83%D8%AA%D8%AC%D8%A7%D9%88%D8%B2-%D9%84%D9%84%D8%A3%D9%86%D8%A7' },
+      { title: 'On a Forgotten Kind of Writing – Leo Strauss', meta: 'Hekmah Journal · 2021', url: 'https://hekmah.org/%D8%A7%D9%84%D9%83%D8%AA%D8%A7%D8%A8%D8%A9/' },
+      { title: 'War on Gaza: How Critics Are Twisting Frantz Fanon’s Legacy', meta: 'Jadaliyya · 2024', url: 'https://www.jadaliyya.com/Details/45985' },
+      { title: 'Review: Hezbollah: The Political Economy of Lebanon’s Party of God', meta: 'Arab Center for Research and Studies · 2020', url: 'https://www.acrseg.org/41530' },
+      { title: 'Monitor and Punish? Yes, Please! – Slavoj Žižek', meta: 'Arab Center for Research and Studies · 2020', url: 'https://www.acrseg.org/41577' },
+      { title: 'Philip Roth Interviews Milan Kundera', meta: 'Hekmah Journal · 2021', url: 'https://hekmah.org/%D9%83%D9%88%D9%86%D8%AF%D9%8A%D8%B1%D8%A7-%D8%AD%D9%88%D8%A7%D8%B1/' },
+      { title: 'Slavoj Žižek: It’s Naive to Think Bitcoin & NFT Give Us Freedom', meta: 'Jadaliyya · 2022', url: 'https://www.jadaliyya.com/Details/44366' },
+      { title: 'Beyond Calculation', meta: 'Jadaliyya · 2022', url: 'https://www.jadaliyya.com/Details/43874' }
+    ];
+
+    function generatePaperThumbnail(article) {
+      const source = (article.meta || '').split('·')[0].trim();
+      const title = article.title || '';
+
+      const svg = `
+      <svg xmlns='http://www.w3.org/2000/svg' width='900' height='520'>
+        <rect width='100%' height='100%' fill='#e2d7b8'/>
+        <rect x='30' y='30' width='840' height='460' fill='none' stroke='#8f7a3a' stroke-width='2' opacity='0.4'/>
+        <text x='60' y='90' font-family='Georgia, serif' font-size='28' fill='#7a6f4f'>${source}</text>
+        <foreignObject x='60' y='130' width='780' height='260'>
+          <div xmlns='http://www.w3.org/1999/xhtml' style='font-family: Georgia, serif; font-size: 40px; line-height:1.2; color:#2b2415;'>
+            ${title}
+          </div>
+        </foreignObject>
+      </svg>`;
+
+      return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+    }
+
+    function makeCard(article, extraClass) {
+      const card = document.createElement('a');
+      card.className = extraClass ? 'highlight-card ' + extraClass : 'highlight-card';
+      card.href = article.url;
+      card.target = '_blank';
+      card.rel = 'noopener noreferrer';
+
+      const imageSrc = generatePaperThumbnail(article);
+
+      card.innerHTML = `
+        <div class="highlight-thumb"><img src="${imageSrc}" alt="Article thumbnail" onerror="this.onerror=null;this.src='profile.jpg';"></div>
+        <div class="highlight-content">
+          <div class="highlight-meta">${article.meta}</div>
+          <div class="highlight-title">${article.title}</div>
+          <div class="highlight-action">Read More →</div>
+        </div>
+      `;
+      return card;
+    }
+
+    const highlightContainer = document.getElementById('highlightArticles');
+    if (highlightContainer) {
+      highlightArticles.forEach(article => {
+        const card = document.createElement('a');
+        card.className = 'highlight-card';
+        card.href = article.url;
+        card.target = '_blank';
+        card.rel = 'noopener noreferrer';
+
+        card.innerHTML = `
+          <div class="highlight-content" style="padding:1.2rem;">
+            <div class="highlight-meta">${article.meta}</div>
+            <div class="highlight-title" style="font-size:1.15rem;">${article.title}</div>
+            <div class="highlight-action">Read More →</div>
+          </div>
+        `;
+
+        highlightContainer.appendChild(card);
+      });
+    }
+
+    const selectedContainer = document.getElementById('selectedArticles');
+    if (selectedContainer) {
+      selectedArticles.forEach((article, index) => {
+        selectedContainer.appendChild(makeCard(article, index >= 10 ? 'extra-article' : ''));
+      });
+
+      if (selectedArticles.length > 10) {
+        const wrap = document.createElement('div');
+        wrap.className = 'see-more-wrap';
+        wrap.innerHTML = '<button class="see-more-btn" type="button" id="seeMoreBtn">See More</button>';
+        selectedContainer.appendChild(wrap);
+      }
+    }
+
+    const tabs = document.querySelectorAll('.research-tabs button[data-panel]');
+    const panels = document.querySelectorAll('.research-panel');
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        const panelId = tab.getAttribute('data-panel');
+        const panel = document.getElementById(panelId);
+
+        if (!panel) {
+          console.warn('Research panel not found:', panelId);
+          return;
+        }
+
+        panels.forEach(item => item.classList.remove('active'));
+        tabs.forEach(item => {
+          item.classList.remove('active');
+          item.setAttribute('aria-selected', 'false');
+        });
+
+        panel.classList.add('active');
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+      });
+    });
+
+    const seeMoreBtn = document.getElementById('seeMoreBtn');
+    if (seeMoreBtn) {
+      seeMoreBtn.addEventListener('click', function () {
+        document.querySelectorAll('#selectedArticles > .extra-article').forEach(card => card.classList.add('visible'));
+        seeMoreBtn.style.display = 'none';
+      });
+    }
+
+    console.assert(document.getElementById('academic'), 'Test failed: academic panel exists');
+    console.assert(document.getElementById('public'), 'Test failed: public panel exists');
+    console.assert(document.querySelectorAll('.research-tabs button[data-panel]').length === 2, 'Test failed: two research tabs exist');
+    console.assert(document.querySelectorAll('#selectedArticles > .highlight-card:not(.extra-article)').length <= 10, 'Test failed: only first 10 selected articles are visible before See More');
+  });
+</script>
 
 </body>
 </html>
