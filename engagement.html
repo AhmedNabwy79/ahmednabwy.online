@@ -2,62 +2,265 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Public Engagement – Ahmed Nabwy</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:'Jost',sans-serif;background:#111;color:#f0eeea;line-height:1.7;}
-    nav{background:#000;padding:1rem 2rem;border-bottom:1px solid #222;}
-    nav a{color:#fff;margin-right:15px;text-transform:uppercase;font-size:.8rem;}
-    main{max-width:900px;margin:80px auto;padding:0 20px;}
-    h1{font-family:'Cormorant Garamond',serif;font-weight:300;margin-bottom:30px;}
-    .item{margin-bottom:30px;}
-    .title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:5px;}
-    .meta{color:#888;font-size:.85rem;margin-bottom:5px;}
-    .desc{color:#c8c4bc;}
-    a.link{color:#c8c4bc;text-decoration:underline;}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ff-serif: 'Cormorant Garamond', Georgia, serif;
+      --ff-sans: 'Jost', sans-serif;
+      --max-w: 1120px;
+      --nav-h: 68px;
+
+      --bg: #111111;
+      --ink: #f0eeea;
+      --ink-mid: #c8c4bc;
+      --ink-light: #888480;
+      --rule: #2e2e2e;
+
+      --nav-bg: #000000;
+      --nav-text: #ffffff;
+      --nav-hover: #aaaaaa;
+      --nav-border: #222222;
+    }
+
+    body {
+      font-family: var(--ff-sans);
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.65;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--nav-border);
+      display: flex; align-items: center; z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      width: 100%; margin: 0 auto; padding: 0 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .nav-logo {
+      font-family: var(--ff-serif);
+      color: var(--nav-text);
+      display: flex; flex-direction: column; line-height: 1;
+      position: relative; text-decoration: none; z-index: 1;
+    }
+
+    .nav-logo .first {
+      font-size: 1.8rem; font-weight: 600;
+      font-variant: small-caps; letter-spacing: 0.22em;
+    }
+
+    .nav-logo .last {
+      font-size: 0.9rem; letter-spacing: 0.5em;
+      opacity: 0.6; margin-top: 4px; transform: translateX(10px);
+    }
+
+    .nav-logo::before {
+      content: ''; position: absolute; left: -10%; right: -20%; bottom: -10px;
+      height: 2px; background: var(--nav-text); opacity: .7; transform: skewX(-12deg);
+      z-index: -1;
+    }
+
+    .nav-logo::after {
+      content: ''; position: absolute; top: 10%; left: -30%; width: 160%; height: 1px;
+      background: var(--nav-text); opacity: .25; transform: rotate(6deg); z-index: -1;
+    }
+
+    .nav-menu { display: flex; gap: .25rem; list-style: none; }
+    .nav-menu a { padding: .45rem .75rem; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--nav-text); text-decoration: none; }
+    .nav-menu a:hover { color: var(--nav-hover); }
+
+    main { padding-top: var(--nav-h); max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+
+    section { padding: 5rem 0; max-width: 780px; }
+
+    h1 {
+      font-family: var(--ff-serif); font-size: 2.6rem; font-weight: 300;
+      margin-bottom: 2.5rem; text-align: center; position: relative; padding-bottom: 1.2rem;
+    }
+    h1::after { content: ''; display: block; width: 60px; height: 1px; background: var(--ink-light); margin: 1rem auto 0; opacity: .6; }
+
+    .intro-desc { max-width: 680px; margin: 0 auto 3rem; text-align: center; font-family: var(--ff-serif); color: var(--ink-mid); }
+
+    /* STACKED BOXES */
+    .eng-grid {
+      display: grid;
+      grid-template-columns: 1fr; /* stacked */
+      gap: 1.6rem;
+      margin-top: 2rem;
+    }
+
+    .eng-box {
+      border: 1px solid #d4caa5;
+      padding: 1.6rem;
+      background: linear-gradient(0deg, #d8cfaa, #e2d7b8);
+      color: #111;
+    }
+
+    .eng-box .eng-title,
+    .eng-box .video-title {
+      color: #111;
+    }
+
+    .eng-box .eng-meta,
+    .eng-box .video-meta,
+    .eng-box .video-action {
+      color: #444;
+    }
+
+    .eng-title {
+      font-family: var(--ff-serif);
+      font-size: 1.35rem;
+      margin-bottom: .5rem;
+    }
+
+    .eng-meta {
+      font-family: var(--ff-sans);
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: .7rem;
+    }
+
+    .eng-desc {
+      font-family: var(--ff-serif);
+      font-size: 1.08rem;
+      line-height: 1.7;
+      color: var(--ink-mid);
+    }
+
+    .eng-desc a {
+      color: var(--ink-mid);
+      text-decoration: underline;
+    }
+
+    .video-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .video-thumb {
+      width: 160px;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #000;
+      border: 1px solid var(--rule);
+    }
+
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-info {
+      font-family: var(--ff-serif);
+    }
+
+    .video-meta {
+      font-size: .7rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: .4rem;
+    }
+
+    .video-title {
+      font-size: 1.05rem;
+      color: var(--ink);
+      margin-bottom: .3rem;
+    }
+
+    .video-action {
+      font-size: .75rem;
+      color: var(--ink-light);
+    }
+
+    footer { background:#1c1c1c; color: rgba(255,255,255,.35); text-align:center; padding:2.5rem 2rem; margin-top:4rem; }
+    .footer-logo { font-family: var(--ff-serif); font-size:1.1rem; color: rgba(255,255,255,.55); margin-bottom:.7rem; }
+    footer p { font-size:.78rem; letter-spacing:.04em; }
   </style>
 </head>
 
 <body>
 
 <nav>
-  <a href="index.html" target="_blank">Home</a>
-  <a href="about.html" target="_blank">About</a>
-  <a href="research.html" target="_blank">Research</a>
-  <a href="teaching.html" target="_blank">Teaching</a>
-  <a href="media.html" target="_blank">Media</a>
-  <a href="engagement.html" target="_blank">Public Engagement</a>
-  <a href="contact.html" target="_blank">Contact</a>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="first">AHMED</span>
+      <span class="last">N A B W Y</span>
+    </a>
+
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="media.html">Media</a></li>
+      <li><a href="engagement.html">Public Engagement</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
 </nav>
 
 <main>
-  <h1>Public Engagement</h1>
+  <section>
+    <h1>Public Engagement</h1>
 
-  <div class="item">
-    <div class="title">Public Lectures and Talks</div>
-    <div class="meta">Selected Interventions</div>
-    <div class="desc">
-      A series of public talks addressing state theory, Middle Eastern politics, and the dynamics of power and resistance in the region.
+    <div class="intro-desc">
+      My public-facing work extends academic research into broader conversations through lectures, media interventions, and public discussions on Middle Eastern politics and state theory.
     </div>
-  </div>
 
-  <div class="item">
-    <div class="title">Selected Talks (Video)</div>
-    <div class="meta">YouTube</div>
-    <div class="desc">
-      <a class="link" href="https://www.youtube.com/watch?v=_sM-8RPFgWA&t=107s" target="_blank">Watch Talk 1</a><br>
-      <a class="link" href="https://www.youtube.com/watch?v=lQIyBixsvUE&t=77s" target="_blank">Watch Talk 2</a><br>
-      <a class="link" href="https://www.youtube.com/watch?v=2_hU5vyqLcg&t=408s" target="_blank">Watch Talk 3</a><br>
-      <a class="link" href="https://www.youtube.com/watch?v=ec3L1AULuHo&t=2s" target="_blank">Watch Talk 4</a>
+    <div class="eng-grid">
+
+      <div class="eng-box">
+        <div class="eng-title">Podcasts</div>
+        <div class="eng-meta">Balcony Podcast</div>
+        <a class="video-item" href="https://www.youtube.com/watch?v=BWU2HuzfsaQ&t=154s" target="_blank">
+          <div class="video-thumb">
+            <img src="https://img.youtube.com/vi/BWU2HuzfsaQ/hqdefault.jpg" alt="Balcony Podcast thumbnail">
+          </div>
+          <div class="video-info">
+            <div class="video-meta">Podcast · Interview</div>
+            <div class="video-title">بودكاست البلكونة | الانتخابات التركية: تأسيس لديكتاتورية أم استكمال لتحول ديمقراطي؟</div>
+            <div class="video-action">Listen Podcast →</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="eng-box">
+        <div class="eng-title">Public Talks</div>
+      </div>
+
     </div>
-  </div>
 
+  </section>
 </main>
+
+<footer>
+  <div class="footer-logo">Ahmed Nabwy</div>
+  <p>Researcher · Writer</p>
+</footer>
 
 </body>
 </html>
